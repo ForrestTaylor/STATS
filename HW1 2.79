@@ -1,0 +1,35 @@
+clear all; close all;
+
+%Code that produces a randomly generated number that follows the bernoulli
+%distribution for an arbitrary likelihood of success parameter, p.  That is
+%to say, the script generates a number that is a function of how many times
+%a coin is successfully flipped before a failure.  The number can be
+%adjusted, but is the vector m.  In this case, the values of m are 1, 2,
+%3, 4....etc.  And the probability of each value of m is assigned as 
+%follows:  P(m)=2^(-m)
+
+for n = 1:10000
+p = 0.5;
+success = 0;
+m(n) = 1;
+    while success == 0
+        A = rand;
+        if A < p
+            success=1;
+        else
+            m(n) = m(n)+1;
+        end
+    
+    end
+%result(n)=rand*p(n);%this is a matrix of binomially distributed random nums
+end
+%verify distribution with plot and with the probability of occurencce of
+%some of the values of the variable
+hist(m)
+
+%the below values check the likelihood of m being 1, 2, 3, 4, and 5.
+p1 = sum(m==1)/n;
+p2 = sum(m==2)/n;
+p3 = sum(m==3)/n;
+p4 = sum(m==4)/n;
+p5 = sum(m==5)/n;
